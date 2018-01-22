@@ -17,7 +17,7 @@ name{string} = "ERC20"
 symbol{string} = "20"
 totalSupply{num} = 9001 # IT'S OVER 9000!!!!!!!
 decimals{num} = 18
-balances{mapping} = num[address] # mappingName{mapping} = valueType[keyType]
+balances{mapping}: num[address] # mappingName{mapping}: valueType[keyType]
 
 # FUNCTIONS known as ACTIONS in Quetz
 # Functions in Quetz are called Actions, that react to calls and assess and act on parameters fed to them
@@ -36,9 +36,9 @@ Action totalSupply, is public, is read, gives num:
 
 # Send `_value` tokens to `_to` from your account
 Action transfer takes(_to{address}, _amount{num}), is public, gives a bool:
-    require _amount more than 0 # No negative amounts, require is a keyword
+    require _amount morethan 0 # No negative amounts, require is a keyword
     # the sentence goes on to the part after the comma if the condition isn't fulfilled, returns what is given and throws the transaction
-    require balances of msg.sender moreequal than _amount # You can't send more than you have
+    require balances of msg.sender moreequalthan _amount # You can't send more than you have
     balances of msg.sender minusequal _amount
     balances of _to plusequal _amount
     Transfer: msg.sender, _to, _amount # Transfer event call
